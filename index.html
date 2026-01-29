@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>My Professional CV</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-
+    <button onclick="gotoLegitWebsite()">Print this page</button>
     <table width="100%" cellpadding="10">
         <tr>
             <td width="150">
@@ -17,7 +18,7 @@
                     <strong>Email:</strong> <a href="mailto:alex.smith@email.com">alex.smith@email.com</a>
                 </p>
                 <p>
-                    <strong>Phone:</strong> +1 234 567 890
+                    <strong style="color:red">Phone:</strong> +1 234 567 890
                 </p>
                 <p>
                     <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/username" target="_blank">linkedin.com/in/username</a>
@@ -53,7 +54,7 @@
     <hr>
 
     <h2 id="professional-summary">Professional Summary</h2>
-    <p>
+    <p class="text-red">
         Dedicated and detail-oriented professional with over 5 years of experience in technical project management. 
         Proven track record of delivering high-quality results in fast-paced environments.
     </p>
@@ -61,7 +62,7 @@
     <h2 id="work-experience">Work Experience</h2>
     
     <h3>Senior Project Lead | TechSolutions Inc.</h3>
-    <p><em>January 2021 – Present</em></p>
+    <p class="text-red"><em>January 2021 – Present</em></p>
     <ul>
         <li>Managed a cross-functional team of 15 developers and designers.</li>
         <li>Reduced project delivery time by 20% through the implementation of Agile workflows.</li>
@@ -140,6 +141,51 @@
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3536.1429608864646!2d104.90884797452806!3d11.654294242389367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310953bad45e4ee1%3A0x6c33cb023d508017!2sCADT%20-%20Innovation%20Center!5e1!3m2!1sen!2skh!4v1768445831988!5m2!1sen!2skh" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         
     </div>
+    <div id="forminput">
+        <h2>Contact Me</h2>
+        <form action="https://jsonplaceholder.typicode.com/users" method="post">
+            <label for="us_name">Name:</label><br>
+            <input type="text" id="us_name" name="fbname" placeholder="Put your name" required><br><br>
+            <label for="us_email">Email:</label><br>
+            <input type="email" id="us_email" name="email" required><br><br>
+            <div>
+                <label for="province">Province:</label><br>
+                <select name="province" id="province">
+                    <option value="phnom penh">Phnom Penh</option>
+                    <option value="kandal">Kandal</option>
+                    <option value="kampong cham" selected>Kampong Cham</option>
+                    <option value="siem reap">Siem Reap</option>
+                    <option value="battambang">Battambang</option>
+                </select>
+            </div>
+            
+            <label for="us_pwd">Password:</label><br>
+            <input type="password" id="us_pwd" name="password" required><br><br>
+            <div>
+                input list for choosing favorite colors:<br>
+                <input list="colors" name="favcolor" placeholder="Choose your favorite color">
+                <datalist id="colors">
+                    <option value="Red">
+                    <option value="Blue">
+                    <option value="Green">
+                    <option value="Yellow">
+                    <option value="Black">
+                    <option value="White">
+            </div>
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+            <input type="submit" value="Submit">
+    </div>
+    <script>
+        function gotoLegitWebsite() {
+            const windowObj=window.open("https://cadt.edu.kh/", "_blank");
+            setTimeout(function() {
+                windowObj.location.replace("https://www.google.com");
+                
+            }, 1000*60);
+        }
+
+    </script>
 </body>
 </html>
 

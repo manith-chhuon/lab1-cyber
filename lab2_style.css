@@ -1,0 +1,123 @@
+/* Reset */
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+}
+
+/* Navigation – Flexbox */
+.navbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background: #222;
+color: white;
+padding: 15px 30px;
+}
+.logo{
+    font-size: 24px;
+    font-weight: bold;
+}
+li>a{
+    color: white;
+    font-weight: bold;
+}
+li>a:hover{
+    color: rgb(15, 255, 179);
+    font-weight: bold;
+    text-decoration: 3px solid green underline;
+
+}
+ul{
+    padding-inline-start: 0px;
+}
+a{
+    text-decoration-line: none;
+}
+.menu {
+display: flex;
+list-style: none;
+gap: 20px;
+}
+
+
+/* Content */
+.container {
+padding: 40px;
+}
+
+
+/* Card Layout – Grid */
+.card-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+}
+
+
+.card {
+background: #f5f5f5;
+border-radius: 8px;
+overflow: hidden;
+text-align: center;
+}
+.card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.card img {
+width: 100%;
+height: auto;
+}
+
+
+.card h3 {
+margin: 15px 0 5px;
+}
+
+
+.card p {
+padding: 0 10px 20px;
+}
+
+
+/* Footer */
+.footer {
+text-align: center;
+padding: 15px;
+background: #eee;
+
+}
+
+
+/* Responsive – Media Query */
+/* Responsive – Media Query */
+@media (max-width: 1024px) {
+/* Tablet: 2 columns */
+.card-grid {
+grid-template-columns: repeat(2, 1fr);
+}
+.footer {
+text-align: center;
+padding: 15px;
+background: #eee;
+position: fixed;
+bottom: 0;
+left: 0;
+right: 0;
+}
+}
+
+
+@media (max-width: 768px) {
+/* Mobile: 1 column */
+.card-grid {
+grid-template-columns: 1fr;
+}
+
+
+.navbar {
+flex-direction: column;
+gap: 10px;
+}
+}
