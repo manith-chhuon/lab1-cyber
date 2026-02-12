@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambodia Admin Selection</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="exercise2.js" defer></script>
+</head>
+<body class="bg-base-200 min-h-screen flex items-center justify-center p-4">
+
+    <div class="card w-full max-w-lg bg-base-100 shadow-xl">
+        <div class="card-body">
+            <h2 class="card-title text-primary mb-4">Location Selector</h2>
+            <form action="https://jsonplaceholder.typicode.com/posts" method="post">
+            <div class="space-y-4">
+                <div class="form-control">
+                    <label class="label"><span class="label-text font-bold">Province</span></label>
+                    <select id="province" name="province" class="select select-bordered w-full">
+                        <option value="" disabled selected>Select Province</option>
+                    </select>
+                </div>
+
+                <div class="form-control">
+                    <label class="label"><span class="label-text font-bold">District</span></label>
+                    <select id="district" name="district" class="select select-bordered w-full" disabled>
+                        <option value="" disabled selected>Select District</option>
+                    </select>
+                </div>
+
+                <div class="form-control">
+                    <label class="label"><span class="label-text font-bold">Commune</span></label>
+                    <select id="commune" name="commune" class="select select-bordered w-full" disabled>
+                        <option value="" disabled selected>Select Commune</option>
+                    </select>
+                </div>
+
+                <div class="form-control">
+                    <label class="label"><span class="label-text font-bold">Village</span></label>
+                    <select id="village" name="village" class="select select-bordered w-full" disabled>
+                        <option value="" disabled selected>Select Village</option>
+                    </select>
+                </div>
+            </div>
+            
+
+            <div class="card-actions justify-end mt-6">
+                <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+                <button class="btn btn-danger" onclick="window.location.reload()">Reset</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
