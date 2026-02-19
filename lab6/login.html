@@ -27,6 +27,26 @@
   </div>
 
 <script>
+
+function getCookie(name) {
+  let nameEQ = name + "=";
+  let cookies = document.cookie.split(';');
+  for(let i = 0; i < cookies.length; i++) {
+    let c = cookies[i].trim();
+    if (c.indexOf(nameEQ) === 0) {
+      return c.substring(nameEQ.length);
+    }
+  }
+  return null;
+}
+
+window.onload = function() {
+  let username = getCookie("username");
+  if(username){
+    window.location.href = "register.html";
+  } 
+}
+
 function setCookie(name, value, days) {
   let expires = "";
   if (days) {
