@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register Page</title>
+
+  <!-- Tailwind + DaisyUI CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-10">
+
+<div class="max-w-2xl mx-auto">
+
+  <div class="card bg-white shadow-xl p-6 mb-6">
+    <h2 class="text-2xl font-bold mb-4">Register User</h2>
+    <div class="flex items-center mb-4">
+        <p id="welcome" class="mb-4 text-green-600 txt-"></p>
+        <button class="btn btn-error ml-auto" onclick="logout()">Logout</button>
+    </div>
+    
+
+    <div class="form-control mb-3">
+      <label class="label">Full Name</label>
+      <input type="text" id="fullName" class="input input-bordered">
+    </div>
+
+    <div class="form-control mb-3">
+      <label class="label">Email</label>
+      <input type="email" id="email" class="input input-bordered">
+    </div>
+
+    <div class="form-control mb-3">
+      <label class="label">Phone</label>
+      <input type="text" id="phone" class="input input-bordered">
+    </div>
+    <div class="flex w-full gap-2 mt-5">
+        <button class="btn btn-secondary flex-1 ml-2" onclick="clearForm()">Clear</button>
+        <button class="btn btn-primary flex-1" onclick="registerUser()">Register</button>
+        
+    </div>
+    
+  </div>
+
+  <div class="card bg-white shadow-xl p-6">
+    <h3 class="text-xl font-bold mb-4">Registered Users</h3>
+    <div id="userTable"></div>
+  </div>
+
+</div>
+
+<script>
+// -------------------- COOKIE FUNCTIONS --------------------
+function getCookie(name) {
+  let nameEQ = name + "=";
+  let cookies = document.cookie.split(';');
+  for(let i = 0; i < cookies.length; i++) {
+    let c = cookies[i].trim();
+    if (c.indexOf(nameEQ) === 0) {
+      return c.substring(nameEQ.length);
+    }
+  }
+  return null;
+}
+
+function deleteCookie(name) {
+  document.cookie = name + '=; Max-Age=0; path=/';
+}
+
+// -------------------- PAGE LOAD CHECK --------------------
+window.onload = function() {
+  let username = getCookie("username");
+
+  if(!username){
+    window.location.href = "login.html";
+  } else {
+    document.getElementById("welcome").innerText = 
+      "Welcome, " + username;
+  }
+  displayUsers();
+}
+
+// -------------------- REGISTER FUNCTION --------------------
+function registerUser() {
+
+  let fullName = document.getElementById("fullName").value;
+  let email = document.getElementById("email").value;
+  let phone = document.getElementById("phone").value;
+
+  if(fullName === "" || email === "" || phone === ""){
+    alert("Please fill all fields");
+    return;
+  }
+
+  let newUser = {
+    fullName: fullName,
+    email: email,
+    phone: phone
+  };
+
+  let users = localStorage.getItem("users");
+
+  if(users){
+    users = JSON.parse(users);
+  } else {
+    users = [];
+  }
+
+  // Prevent duplicate email
+  let emailExists = users.some(user => user.email === email);
+
+  if(emailExists){
+    alert("Email already exists!");
+    return;
+  }
+
+  users.push(newUser);
+
+  localStorage.setItem("users", JSON.stringify(users));
+
+  alert("User registered successfully!");
+
+  document.getElementById("fullName").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("phone").value = "";
+
+  displayUsers();
+}
+
+// -------------------- DISPLAY USERS --------------------
+function displayUsers(){
+  let users = localStorage.getItem("users");
+
+  if(!users){
+    document.getElementById("userTable").innerHTML = "No users yet.";
+    return;
+  }
+
+  users = JSON.parse(users);
+
+  let table = `
+    <table class="table w-full">
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  users.forEach((user, index) => {
+    table += `
+      <tr>
+        <td>${user.fullName}</td>
+        <td>${user.email}</td>
+        <td>${user.phone}</td>
+        <td>
+          <button class="btn btn-sm btn-error" onclick="deleteUser(${index})">
+            Delete
+          </button>
+        </td>
+      </tr>
+    `;
+  });
+
+  table += `</tbody></table>`;
+
+  document.getElementById("userTable").innerHTML = table;
+}
+
+function clearForm(){
+  document.getElementById("fullName").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("phone").value = "";
+}
+
+// -------------------- DELETE USER --------------------
+function deleteUser(index){
+  let users = JSON.parse(localStorage.getItem("users"));
+  users.splice(index, 1);
+  localStorage.setItem("users", JSON.stringify(users));
+  displayUsers();
+}
+
+// -------------------- LOGOUT --------------------
+function logout(){
+  deleteCookie("username");
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

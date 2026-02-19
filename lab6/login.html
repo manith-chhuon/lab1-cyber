@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+
+  <!-- Tailwind + DaisyUI CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+  <div class="card w-96 bg-white shadow-xl p-6">
+    <h2 class="text-2xl font-bold mb-4 text-center">Login</h2>
+
+    <div class="form-control mb-3">
+      <label class="label">Username</label>
+      <input type="text" id="username" class="input input-bordered" placeholder="Enter username">
+    </div>
+
+    <div class="form-control mb-3">
+      <label class="label">Password</label>
+      <input type="password" id="password" class="input input-bordered" placeholder="Enter password">
+    </div>
+
+    <button class="btn btn-primary w-full" onclick="login()">Login</button>
+  </div>
+
+<script>
+function setCookie(name, value, days) {
+  let expires = "";
+  if (days) {
+    let date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+function login() {
+  let username = document.getElementById("username").value;
+
+  if(username === ""){
+    alert("Please enter username");
+    return;
+  }
+
+  // Save username in cookie (no password checking)
+  setCookie("username", username, 1);
+
+  // Redirect to register page
+  window.location.href = "register.html";
+}
+</script>
+
+</body>
+</html>
